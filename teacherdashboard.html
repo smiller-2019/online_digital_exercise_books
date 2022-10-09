@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./public/css/login.css" />
+    <title>Teacher Dashboards</title>
+  </head>
+
+  <body>
+    <header class = "row d-flex justify-content-between bg-primary">
+       <h1 class="col col-6">ABC Primary School</h1>
+       <img class="col col-2 col-md-1" src="./public/image/abc_logo_gold.png" alt="ABC school Logo" >
+    </header>
+
+    <div class="container d-flex justify-content-center">
+        <div class="col col-6 m-3 bg-light">
+            <h2 class="shadow-none p-3 mb-3 bg-secondary rounded">Teacher Dashboards</h2>
+            <div>
+                <h3>Pending Latest Five Student Article</h3>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Student name</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Grade</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <th>Student 1</th>
+                        <td><a href="./exercisepage.html" >title 1</a></td>
+                        <td>Grade 1</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <th>Student 2</th>
+                        <td><a href="./exercisepage.html" >title 2</a></td>
+                        <td>Grade 2</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <th>Student 3</th>
+                        <td><a href="./exercisepage.html" >title 3</a></td>
+                        <td>Grade 3</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <th>Student 4</th>
+                        <td><a href="./exercisepage.html" >title 4</a></td>
+                        <td>Grade 4</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <th>Student 5</th>
+                        <td><a href="./exercisepage.html" >title 5</a></td>
+                        <td>Grade 5</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+
+            <div>
+                <button type="button m-3" class="btn btn-primary" id="viewAllPendingArticle">View All Pending Articles</button>
+                <button type="button m-3" class="btn btn-primary" id="createNewClass">Create New Class</button>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./public/js/main.js"></script>
+  </body>
+</html>
+
