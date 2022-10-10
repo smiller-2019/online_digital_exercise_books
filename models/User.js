@@ -42,9 +42,6 @@ User.init(
     role: {
       type: DataTypes.STRING,
       allowNull: false,
-      isAlpha: true,
-      isIn: [["t", "T", "s", "S"]],
-      len: [1, 1],
     },
   },
   {
