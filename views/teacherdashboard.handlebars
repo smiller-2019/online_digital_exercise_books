@@ -1,0 +1,30 @@
+<div id="teacherDashboardPartial" class="col m-3 bg-light">
+    <h2 class="shadow-none p-3 mb-3 bg-secondary rounded">Teacher Dashboards</h2>
+    <div>
+        <h3>Pending Latest Five Student Article</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Student name</th>
+                <th scope="col">Title</th>
+                <th scope="col">Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+                {{#each ExerciseBook as |item i| }}
+                <tr>
+                    <td>`+{{i+1}}+`</td>
+                    <td>`+{{item.name}}+`</td>
+                    <td><button type='button' class='btn btn-link' onclick='viewExercise({{item.id}})'>{{item.topic}}</button></td>
+                    <td>`+{{item.grade}}+`</td>
+                </tr>
+                {{/each}}
+            </tbody>
+          </table>
+    </div>
+    <div>
+        <button type="button m-3" class="btn btn-primary" id="viewAllPendingArticle">View All Pending Articles</button>
+        <button type="button m-3" class="btn btn-primary" id="createNewClass">Create New Class</button>
+    </div>
+</div>
