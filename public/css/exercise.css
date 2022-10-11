@@ -1,0 +1,103 @@
+.exercise-book{
+    background-color: ghostwhite;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.student-section{
+    background-color: white;
+    border-radius: 5px;
+    margin: 5px;    
+}
+
+.teacher-section{
+    background-color: lightcyan;
+}
+
+.topic{
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+.card{
+    background-color: ghostwhite;
+    border: none;
+}
+
+.noteblock-edit > textarea {
+    width: 80%;
+}
+
+.noteblock-text {
+    float: left;
+}
+
+.noteblock-edit{
+    width: 100%;
+}
+
+.noteblock-display{
+    width: 100%;
+}
+
+.noteblock-button {
+    float: right;
+    border: none;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background-color: transparent;
+}
+
+.noteblock-button-edit {
+    background-image: url('../image/pencil.png');
+}
+
+.noteblock-button-bin {
+    background-image: url('../image/bin.png');
+}
+
+.noteblock-button-save {
+    background-image: url('../image/save.png');
+}
+
+.noteblock-button-cancel {
+    background-image: url('../image/no.png');
+}
+
+.teacher-button {
+    float: right;
+    border: none;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background-color: transparent;
+    margin: 5px;
+}
+
+.teacher-button-save {
+    background-image: url('../image/save.png');
+}
+
+.teacher-button-cancel {
+    background-image: url('../image/no.png');
+}
+
+.noteblock-image{
+    border: 2px dashed black;
+    border-radius: 5px;
+    padding: 5px;
+    max-width: 80%;
+    width: auto;
+    height: auto;
+}
+
+h2{
+    font-size: 14pt;
+}
