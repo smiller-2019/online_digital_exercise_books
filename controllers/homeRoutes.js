@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   });
 
 
-// student's exercise as per logged_in user_id
+// get exercises as per logged_in user_id
 router.get('/studentdashboard', withAuth, async (req, res) => {
     try {
       // Find the logged in user based on the session ID
