@@ -39,10 +39,20 @@ function loginToServer(userId, password){
                 body: JSON.stringify({ userid, password }),
                 headers: { 'Content-Type': 'application/json' },
                 });
+            
+                //display fail to login
+            if (response.ok){
+                return response.json;
+            }else{
+                $('#invalid').show();
+            }
     */
-   if(userId === 'T001')
-       return {userRole: 'teacher'};
-   return {userRole: 'student'};
+    if(userId === 'T001')
+        return {userRole: 'teacher'};
+    else if(userid === 'S001') 
+        return {userRole: 'student'};
+    else
+        $('#invalid').show();
 }
 
 function getAllExercisesFromServer(userid){
