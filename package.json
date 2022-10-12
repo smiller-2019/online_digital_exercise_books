@@ -1,0 +1,31 @@
+{
+  "name": "digital_excercise_book",
+  "version": "1.0.0",
+  "description": "digital exercise book for students",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \\\\\\\"Error: no test specified\\\\\\\" && exit 1",
+    "start": "node server.js",
+    "seed": "node ./seeds/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikehui1124/digital_excercise_book.git"
+  },
+  "author": "group 5",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikehui1124/digital_excercise_book/issues"
+  },
+  "homepage": "https://github.com/mikehui1124/digital_excercise_book#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "connect-session-sequelize": "^7.0.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  }
+}
