@@ -13,26 +13,22 @@
   </head>
 
   <body>
-    <!-- <header class = "row d-flex justify-content-between bg-primary">
-       <h1 class="col col-6">ABC Primary School</h1>
-       <img class="col col-2 col-md-1" src="../public/image/abc_logo_gold.png" alt="ABC school Logo" >
-    </header> -->
-
     <div class="container d-flex justify-content-center">
-        <div class="col col-6 m-3 bg-light">
+      <div class="row">
+        <div class="col col-5 m-3 bg-light">
             <h2 class="shadow-none p-3 mb-3 bg-secondary rounded">Create New Class</h2>
             <div>
                 <h3>Select Subject and Assign Student(s) to Class</h3>
-                 <!-- Example single danger button -->
+                 
                 <div class="btn-group">
                   <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Subject
                   </button>
                   <ul class="dropdown-menu">
+
                     <!-- {{#each subjects as |subject|}} -->
-                    <li><button class="dropdown-item" data-subjectid="{{subject.id}}">{{subject.title}}</button></li>
-                    <!-- {{/each}} -->
-                 
+                       <li><button class="dropdown-item" data-subjectid="{{subject.id}}">{{subject.title}}</button></li>
+                    <!-- {{/each}}                   -->
                   </ul>
                 </div>
                 
@@ -42,25 +38,55 @@
                     Assign Student(s) 
                   </li>
                  
-                  <!-- {{#each students as |student|}} -->
+                  <!-- {{#each students as |student|}}  -->
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox" data-studentid="{{student.id}}">
+                        <label class="form-check-label" for="firstCheckbox">{{student.last_name}} {{student.last_name}}</label>
+                    </li>
+                  <!-- {{/each}}                                  -->
                   <li class="list-group-item">
-                    <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox" data-studentid="{{student.id}}">
-                    <label class="form-check-label" for="firstCheckbox">{{student.last_name}} {{student.last_name}}</label>
-                  </li>
-                  <!-- {{/each}} -->
-                                
-                  <li class="list-group-item">
-                    Teacher in Charge: {{teacher.last_name}}} {{teacher.first_name}}}
+                    Teacher in Charge: {{teacher_email}} 
                   </li>
                 </ul>                              
             </div>
-
             <div>
                 <br></br>
                 <button type="button m-3" class="btn btn-primary" id="addClass">Add Class</button>
             </div>
-        </div>        
-    </div>
+        </div>  
+
+      <!-- {{#if blogs.length}} -->
+        <div class="col col-6 m-3 bg-light">
+            <h2 class="shadow-none p-3 mb-3 bg-secondary rounded">Existing Classes</h2>
+              <div>
+                  <h3>List of All Classes in School</h3>
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Teacher in Charge</th>
+                          <th scope="col">Subject</th>
+                          <th scope="col">No. of Student</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- {{#each classes as |class|}} -->
+                        <tr>
+                          <td scope="row">{{class.id}}</td>
+                          <td>{{class.teacher_email}}</td>
+                          <td>{{class.subject.title}}</td>
+                          <td>{{class.student_email.length}}</td>
+                        </tr>
+                      <!-- {{/each}}                        -->
+
+                      </tbody>
+                    </table>
+              </div>
+        </div>
+       <!-- {{/if}} -->
+
+      </div>      
+  </div>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
