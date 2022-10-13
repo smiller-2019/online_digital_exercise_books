@@ -102,3 +102,15 @@ dist
 
 # TernJS port file
 .tern-port
+
+#dont upload
+susan_app.js
+susan_index.js
+susan_package-lock.json
+susan_package.json
+susan.env
+susan_public
+images
+susan_config
+uploads
+eng.traineddata
