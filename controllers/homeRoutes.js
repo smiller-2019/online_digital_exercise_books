@@ -27,6 +27,7 @@ router.get('/studentdashboard', withAuth, async (req, res) => {
       // Find the logged in user based on the session ID
       // include the associated blog records as per user
       const userData = await User.findByPk(req.session.user_id, {
+        
         attributes: { exclude: ['password'] },
         include: [{ model: Exercise }],
       });
