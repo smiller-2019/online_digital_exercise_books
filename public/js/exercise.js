@@ -129,6 +129,8 @@ function removeNoteblock(id){
     }
 }
 
+
+//view
 function addNoteblockTextarea(){
     var noteblock = exercise1.addNoteblockTextarea();
     const templateHtml = `<div class="card" id="noteblock-` + noteblock.id + `">
