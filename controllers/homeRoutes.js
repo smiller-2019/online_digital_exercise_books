@@ -2,17 +2,24 @@ const router = require('express').Router();
 const { Exercise, Pages, User, Subject, Class } = require('../models');
 const withAuth = require('../utils/auth');
 
-// login route on entry
+// Login route on entry
 router.get('/', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
+    // If the user is already logged in, redirect to student or teacher view
     if (req.session.logged_in) {
-      res.redirect('/studentdashboard');
+      if (req.session.user_role == "student") {
+        res.redirect('/studentdashboard');
+
+      } else if  (req.session.user_role == "teacher") {
+        res.redirect('/teacherdashboard');
+      }
       return;
     }
-  // render login.hdbs without passing data if not yet logged in
+  // render login.hdbs if not yet logged in
     res.render('login');
   });
 
+
+//========================================================================================
 
 // get exercises as per logged_in user_id
 router.get('/studentdashboard', withAuth, async (req, res) => {
