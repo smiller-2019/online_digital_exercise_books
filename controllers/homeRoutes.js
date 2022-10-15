@@ -77,69 +77,26 @@ router.get('/teacherdashboard', withAuth, async (req, res) => {
   }
 });
 
-
-// router.get('/', async (req, res) => {
-//   try {
-//     // Get all projects and JOIN with user data
-//     const blogData = await Blog.findAll({
-//       include: [
-//         {
-//           // just return User.name in the response
-//           model: User,
-//           attributes: ['name'],
-//         },
-//         {
-//           model: Comment          
-//         }
-//       ]
-//     });
-
-//     const userData = await User.findAll({});
-
-//     // Serialize data so the template(main.hds) can read it
-//     const blogs = blogData.map((blog) => blog.get({ plain: true }));   
-    
-//     const users = userData.map((user) => user.get({ plain: true }));
-
-//     // console.log(blogs[3]);
-
-//   // Pass serialized response(ie array of blogs) and session flag into homepage.hds template
-//     res.render('homepage', { 
-//       blogs, users,
-//       logged_in: req.session.logged_in 
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-
 // if hit, get all blog records (in an array)
-router.get('/blog/:id', withAuth, async (req, res) => {
-  try {
-    const blogData = await Blog.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-        {
-          model: Comment          
-        }
-      ]
-    });
+router.get('/exercise/:id', withAuth, async (req, res) => {
+  const userData = await User.findByPk(req.session.user_id, {        
+    attributes: { exclude: ['password'] }
+  });
+  const user = userData.get({ plain: true });
 
-// Serialize data so the html template(project.hds) can read it
-    const blog = blogData.get({ plain: true });    
+  var subjects = [];
+  const subjectData = await Subject.findAll();
+  subjectData.forEach(data => {
+    subjects.push(data.get({plain: true}));
+  });
 
-// pass single project response into blog.hdbs template
-    res.render('blog', {
-      ...blog,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  res.render('exercise', {
+    user: user,
+    exerciseId: req.params.id,
+    logged_in: req.session.logged_in,
+    isStudent: (user.role=='student'),
+    subjects: subjects
+  });
 });
 
 // update a blog route

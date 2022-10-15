@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{i}}</td>
                     <td>{{item.student_email}}</td>
-                    <td><button type='button' class='btn btn-link' onclick='viewExercise({{item.id}})'>{{item.topic}}</button></td>
+                    <td><a href='/exercise/{{item.id}}'>{{item.topic}}</a></td>            
                     <td>{{item.grade}}</td>
                     <td>{{item.feedback}}</td>
                 </tr>

@@ -14,12 +14,12 @@ ExerciseBook.belongsTo(User, {
 });
 
 ExerciseBook.hasMany(Page, {
-  foreignKey: "exercise_book_id",
+  foreignKey: "exercisebook_id",
   onDelete: "CASCADE",
 });
 
 Page.belongsTo(ExerciseBook, {
-  foreignKey: "exercise_book_id",
+  foreignKey: "exercisebook_id",
 });
 
 Subject.hasMany(ExerciseBook, {

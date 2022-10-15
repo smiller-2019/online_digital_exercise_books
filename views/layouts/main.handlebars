@@ -8,7 +8,12 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
     />
-    <link rel="stylesheet"gihref="./css/login.css"/>
+    <link rel="stylesheet" href="/css/exercise.css"/>
+    
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/hbs.js"></script>
+
     <title>Digtal Exercise Book</title>
   </head>
 
@@ -20,7 +25,7 @@
         {{/if}}
        </div>
     
-       <img class="col col-2 col-md-1" src="./image/abc_logo_gold.png" alt="ABC school Logo" >
+       <img class="col col-2 col-md-1" src="/image/abc_logo_gold.png" alt="ABC school Logo" >
       {{#if logged_in}}
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -45,10 +50,5 @@
     <main>
         {{{body}}}
     </main>
-
-
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./js/hbs.js"></script>
   </body>
 </html>

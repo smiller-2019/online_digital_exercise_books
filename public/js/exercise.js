@@ -4,9 +4,14 @@ class ExercisePage {
         this.noteblocks = [];
         this.teacherFeedback = '';
         this.teacherGrade = '';
+        this.topic = '';
+        this.subject = '';
+        this.id = 0
     }
 
-    newNoteblockId(){
+    createNoteblockId(id){
+        if(id>0)
+            return id;
         if(this.noteblocks.length == 0)
             return 1;
         return this.noteblocks[this.noteblocks.length-1].id + 1;
@@ -22,9 +27,9 @@ class ExercisePage {
         return false;
     }
 
-    addNoteblockTextarea(){
+    addNoteblockTextarea(id){
         var newNoteblock = {
-            id: this.newNoteblockId(),
+            id: this.createNoteblockId(id),
             seq: this.noteblocks.length - 1,
             type: 'text',
             content: ''
@@ -33,13 +38,13 @@ class ExercisePage {
         return newNoteblock;
     }
 
-    addNoteblockImage(){
+    addNoteblockImage(id){
         var newNoteblock = {
-            id: this.newNoteblockId(),
+            id: this.createNoteblockId(id),
             seq: this.noteblocks.length - 1,
             type: 'image',
             image: ''
-        };        
+        };
         this.noteblocks.push(newNoteblock);
         return newNoteblock;
     }
@@ -55,9 +60,23 @@ class ExercisePage {
 const mode = 'student';
 const exercise1 = new ExercisePage();
 
-function exportExercise(){
+function saveexercise(){
+    exercise1.topic = $('#topic').val();
+    exercise1.subject = $('#subject').val();
     console.log(exercise1);
-    alert(JSON.stringify(exercise1));
+    const response = $.ajax({
+        url: '/api/exercises/'+exercise1.id, 
+        method: 'PUT',
+        data: exercise1
+    }).done(
+        function(data){
+            alert("Save sucessfully");
+        }
+    ).fail(function(data) {
+        console.error(data.responseJSON.message);
+        $('#invalid').html(data.responseJSON.message);
+        $('#invalid').show();
+    });
 }
 
 //controllers
@@ -71,7 +90,6 @@ function editNoteblockTextArea(id){
     $('#noteblock-' + id + '-textarea').val(noteblock.content);
     $('#noteblock-' + id + '-edit').show();
 }
-
 
 function editNoteblockImage(id){
     var noteblock = exercise1.getNoteblock(id);
@@ -129,10 +147,9 @@ function removeNoteblock(id){
     }
 }
 
-
 //view
-function addNoteblockTextarea(){
-    var noteblock = exercise1.addNoteblockTextarea();
+function addNoteblockTextarea(id = 0){
+    var noteblock = exercise1.addNoteblockTextarea(id);
     const templateHtml = `<div class="card" id="noteblock-` + noteblock.id + `">
     <div class="card-body">
         <div id="noteblock-` + noteblock.id + `-display" class="noteblock-display" style="display: none;">
@@ -148,10 +165,11 @@ function addNoteblockTextarea(){
     </div>
 </div>`;
     $('#student-section').append(templateHtml);
+    return noteblock;
 }
 
-function addNoteblockImage(){
-    var noteblock = exercise1.addNoteblockImage();
+function addNoteblockImage(id = 0){
+    var noteblock = exercise1.addNoteblockImage(id);
     const templateHtml = `<div class="card" id="noteblock-` + noteblock.id + `">
     <div class="card-body">
         <div id="noteblock-` + noteblock.id + `-display" class="noteblock-display" style="display: none;">
@@ -168,6 +186,7 @@ function addNoteblockImage(){
     </div>
 </div>`;
     $('#student-section').append(templateHtml);
+    return noteblock;
 }
 
 function previewNoteblockImage(event, id){
@@ -200,8 +219,6 @@ function changeMode(mode){
         $('#teacher-feedback-textarea').hide();
         $('#teacher-feedback-displaytext').show();
         $('#teacher-grade').prop('disabled', true);
-        $('#studentModeBtn').hide();
-        $('#teacherModeBtn').show();
     }else if(mode == 'teacher'){
         $('.noteblock-edit').hide();
         $('.noteblock-display').show();
@@ -210,12 +227,59 @@ function changeMode(mode){
         $('#teacher-feedback-textarea').show();
         $('#teacher-grade').prop('disabled', false);
         $('.teacher-button').show();
-        $('#teacherModeBtn').hide();        
-        $('#studentModeBtn').show();
     }
 }
 
-function initExercise(){
+function newExercise(){
     changeMode('student');
     addNoteblockTextarea();
+}
+
+function initExercise(exerciseBook, userRole){
+    exercise1.id = exerciseBook.id;
+    exercise1.teacherFeedback = exerciseBook.feedback;
+    exercise1.teacherGrade = exerciseBook.grade;
+    exercise1.topic = exerciseBook.topic;
+    exercise1.subject = exerciseBook.subject_id;
+    for(var i=0; i<exerciseBook.pages.length; i++){        
+        var ebPage = exerciseBook.pages[i];
+        switch(ebPage.content_type){
+            case 't':                
+                var block = addNoteblockTextarea(ebPage.id);
+                block.content = ebPage.content;
+                break;
+            case 'i':
+                var block = addNoteblockImage(ebPage.id);
+                block.image = ebPage.content;
+                break;
+        }
+    }
+    renderView();
+    changeMode(userRole);
+}
+
+function renderView(){
+    console.log(exercise1);
+    $('#teacher-feedback-displaytext').html(exercise1.teacherFeedback);
+    $('#teacher-feedback-textarea').val(exercise1.teacherFeedback);    
+    $('#teacher-grade').val(exercise1.teacherGrade);
+    $('#teacher-grade').val(exercise1.teacherGrade);
+    $('#topic').val(exercise1.topic);
+    $('#subject').val(exercise1.subject);
+    
+    for(var i=0; i<exercise1.noteblocks.length; i++){
+        var noteblock = exercise1.noteblocks[i];
+        switch(noteblock.type){
+            case 'text':
+                $('#noteblock-' + noteblock.id + '-displaytext').html(noteblock.content);
+                $('#noteblock-' + noteblock.id + '-textarea').val(noteblock.content);
+                break;
+            case 'image':
+                $('#noteblock-' + noteblock.id + '-displayimage').attr('src', noteblock.image);
+                $('#noteblock-' + noteblock.id + '-editimage').attr('src', noteblock.image);
+                break;
+            default:
+                console.log('Not support: '+noteblock.type);
+        }
+    }
 }
