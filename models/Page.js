@@ -25,7 +25,7 @@ Page.init(
     exercisebook_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "exercise_book",
+        model: "exercisebook",
         key: "id",
       },
     },

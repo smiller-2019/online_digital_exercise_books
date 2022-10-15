@@ -1,0 +1,51 @@
+[
+  {
+    "email": "karen@myteacher.com",
+    "password": "password1",
+    "first_name": "karen",
+    "last_name": "lacey",
+    "role": "teacher"
+  },
+  {
+    "email": "dave@myteacher.com",
+    "password": "password12",
+    "first_name": "dave",
+    "last_name": "banner",
+    "role": "teacher"
+  },
+  {
+    "email": "sally@myteacher.com",
+    "password": "password123",
+    "first_name": "sally",
+    "last_name": "payne",
+    "role": "teacher"
+  },
+  {
+    "email": "stacey@astudent.com",
+    "password": "password1234",
+    "first_name": "stacey",
+    "last_name": "casey",
+    "role": "student"
+  },
+  {
+    "email": "timothy@anostudent.com",
+    "password": "password12345",
+    "first_name": "timothy",
+    "last_name": "banks",
+    "role": "student"
+  },
+  {
+    "email": "kelly@anostudent.com",
+    "password": "password123456",
+    "first_name": "kelly",
+    "last_name": "jones",
+    "role": "student"
+  },
+  {
+    "email": "brian@thisstudent.com",
+    "password": "password1234567",
+    "first_name": "brian",
+    "last_name": "delany",
+    "role": "student"
+  }
+]

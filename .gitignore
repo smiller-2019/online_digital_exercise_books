@@ -104,13 +104,13 @@ dist
 .tern-port
 
 #dont upload
-susan_app.js
-susan_index.js
-susan_package-lock.json
-susan_package.json
-susan.env
-susan_public
+app.js
+index.js
+package-lock.json
+package.json
+.env
+public
 images
-susan_config
+config
 uploads
 eng.traineddata

@@ -1,0 +1,58 @@
+[
+  {
+    "exercisebook_id": 1,
+    "student_email": "stacey@astudent.com",
+    "content": "00001101 is 13 in denary",
+    "content_type": "t",
+    "content_url": ""
+  },
+  {
+    "exercisebook_id": 1,
+    "student_email": "stacey@astudent.com",
+    "content": "00001111 is 15 in denary",
+    "content_type": "t",
+    "content_url": ""
+  },
+  {
+    "exercisebook_id": 1,
+    "student_email": "stacey@astudent.com",
+    "content": "00001001 is 9 in denary",
+    "content_type": "t",
+    "content_url": ""
+  },
+  {
+    "exercisebook_id": 2,
+    "student_email": "kelly@anostudent.com",
+    "content": "12 * 12 = 144",
+    "content_type": "t",
+    "content_url": ""
+  },
+  {
+    "exercisebook_id": 2,
+    "student_email": "kelly@anostudent.com",
+    "content": "8 * 3 = 24",
+    "content_type": "t",
+    "content_url": ""
+  },
+  {
+    "exercisebook_id": 2,
+    "student_email": "kelly@anostudent.com",
+    "content": "8 + 12 = 30",
+    "content_type": "t",
+    "content_url": ""
+  },
+  {
+    "exercisebook_id": 3,
+    "student_email": "brian@thisstudent.com",
+    "content": "convoluted",
+    "content_type": "t",
+    "content_url": ""
+  },
+  {
+    "exercisebook_id": 3,
+    "student_email": "brian@thisstudent.com",
+    "content": "teleccommunicationn",
+    "content_type": "t",
+    "content_url": ""
+  }
+]

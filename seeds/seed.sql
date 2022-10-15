@@ -1,4 +1,4 @@
-use digital_exercise_book_db;
+use digital_exercisebook_db;
 
 -- init the tables data
 /*
