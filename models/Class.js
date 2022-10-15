@@ -11,6 +11,10 @@ Class.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    class_code: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     student_email: {
       type: DataTypes.STRING,
       references: {

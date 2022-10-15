@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class ExerciseBook extends Model {}
+class Exercisebook extends Model {}
 
-ExerciseBook.init(
+Exercisebook.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -21,18 +21,11 @@ ExerciseBook.init(
     feedback: {
       type: DataTypes.STRING,
     },
-    content: {
-      type: DataTypes.STRING,
-    },
-    content_type: {
-      type: DataTypes.STRING,
-    },
     topic: {
       type: DataTypes.STRING,
     },
     grade: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     subject_id: {
       type: DataTypes.INTEGER,
@@ -47,8 +40,8 @@ ExerciseBook.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "exercise_book",
+    modelName: "exercisebook",
   }
 );
 
-module.exports = ExerciseBook;
+module.exports = Exercisebook;
