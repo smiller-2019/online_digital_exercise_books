@@ -1,61 +1,61 @@
 const User = require("./User");
+const ExerciseBook = require("./ExerciseBook");
+const Class1 = require("./Class");
 const Subject = require("./Subject");
-const Class = require("./Class");
-const Exercisebook = require("./Exercisebook");
 const Page = require("./Page");
 
-User.hasMany(Exercisebook, {
+User.hasMany(ExerciseBook, {
   foreignKey: "student_email",
   onDelete: "CASCADE",
 });
 
-Exercisebook.belongsTo(User, {
-  foreignKey: "student_email",
+ExerciseBook.belongsTo(User, {
+  foreignKey: "student_email"
 });
 
-Subject.hasMany(Exercisebook, {
-  foreignKey: "subject_id",
-  onDelete: "CASCADE",
-});
-
-Exercisebook.belongsTo(Subject, {
-  foreignKey: "subject_id",
-});
-
-Exercisebook.hasMany(Page, {
+ExerciseBook.hasMany(Page, {
   foreignKey: "exercisebook_id",
   onDelete: "CASCADE",
 });
 
-Page.belongsTo(Exercisebook, {
+Page.belongsTo(ExerciseBook, {
   foreignKey: "exercisebook_id",
 });
 
-User.hasMany(Class, {
-  foreignKey: "teacher_email",
-  onDelete: "CASCADE",
+Subject.hasMany(ExerciseBook, {
+  foreignKey: "subject_id",
+  onDelete: "SET NULL",
 });
 
-Class.belongsTo(User, {
-  foreignKey: "teacher_email",
+ExerciseBook.belongsTo(Subject, {
+  foreignKey: "subject_id",
 });
 
-Class.hasMany(Subject, {
+Subject.hasMany(Class1, {
   foreignKey: "subject_id",
   onDelete: "CASCADE",
 });
 
-Subject.belongsTo(Class, {
+Class1.belongsTo(Subject, {
   foreignKey: "subject_id",
 });
 
-User.hasMany(Class, {
+User.hasMany(Class1, {
   foreignKey: "student_email",
   onDelete: "CASCADE",
 });
 
-Class.belongsTo(User, {
+Class1.belongsTo(User, {
   foreignKey: "student_email",
 });
 
-module.exports = { User, Exercisebook, Class, Subject, Page };
+User.hasMany(Class1, {
+  foreignKey: "teacher_email",
+  onDelete: "CASCADE",
+});
+
+Class1.belongsTo(User, {
+  foreignKey: "teacher_email",
+});
+
+module.exports = { User, ExerciseBook, Class1, Subject, Page };

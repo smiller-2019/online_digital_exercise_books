@@ -55,19 +55,19 @@
 }
 
 .noteblock-button-edit {
-    background-image: url('../image/pencil.png');
+    background-image: url('/image/pencil.png');
 }
 
 .noteblock-button-bin {
-    background-image: url('../image/bin.png');
+    background-image: url('/image/bin.png');
 }
 
 .noteblock-button-save {
-    background-image: url('../image/save.png');
+    background-image: url('/image/save.png');
 }
 
 .noteblock-button-cancel {
-    background-image: url('../image/no.png');
+    background-image: url('/image/no.png');
 }
 
 .teacher-button {
@@ -82,11 +82,11 @@
 }
 
 .teacher-button-save {
-    background-image: url('../image/save.png');
+    background-image: url('/image/save.png');
 }
 
 .teacher-button-cancel {
-    background-image: url('../image/no.png');
+    background-image: url('/image/no.png');
 }
 
 .noteblock-image{

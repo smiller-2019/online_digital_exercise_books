@@ -1,30 +1,29 @@
 <div id="studentDashboardPartial" class="col m-3 bg-light">
         <h2 class="shadow-none p-3 mb-3 bg-secondary rounded">Student Dashboards</h2>
         <div>
-            <h3>Latest Five Article</h3>
+            <h3>Your Exercises</h3>
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Grade</th>
-                    <th scope="col">Updated Date</th>
+                    <th scope="col">Feedback</th>
                 </tr>
                 </thead>
                 <tbody id="dashboardcontent">
-                {{#each ExerciseBook as |item| }}
+                {{#each user.exercisebooks as |item i| }}
                 <tr>
-                    <td>{{i+1}}</th>
-                    <td><button type='button' class='btn btn-link' onclick='viewExercise({{item.id}})'>{{item.topic}}</button></td>            
+                    <td>{{i}}</td>
+                    <td><a href='/exercise/{{item.id}}'>{{item.topic}}</a></td>            
                     <td>{{item.grade}}</td>
-                    <td>{{item.date}}</td>
+                    <td>{{item.feedback}}</td>
                 </tr>
                 {{/each}}
                 </tbody>
             </table>
         </div>
         <div>
-            <button type="button m-3" class="btn btn-primary" id="viewAllArticle">View All Articles</button>
-            <button type="button m-3" class="btn btn-primary" id="createNewArticle" onclick="changePage('exercise')">Create New Article</button>
+            <button type="button m-3" class="btn btn-primary" id="createNewArticle" onclick="changePage('exercise')">Create New Exercise</button>
         </div>
     </div>
