@@ -1,0 +1,20 @@
+[
+  {
+    "class_code": "9COMPSCIA",
+    "student_email": "stacey@astudent.com",
+    "teacher_email": "karen@myteacher.com",
+    "subject_id": 1
+  },
+  {
+    "class_code": "7HISTB",
+    "student_email": "kelly@anostudent.com",
+    "teacher_email": "sally@myteacher.com",
+    "subject_id": 2
+  },
+  {
+    "class_code": "12ENGLITC",
+    "student_email": "brian@thisstudent.com",
+    "teacher_email": "dave@myteacher.com",
+    "subject_id": 3
+  }
+]

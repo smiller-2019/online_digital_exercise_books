@@ -22,10 +22,10 @@ Page.init(
       type: DataTypes.STRING,
     },
 
-    exercise_book_id: {
+    exercisebook_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "exercise_book",
+        model: "exercisebook",
         key: "id",
       },
     },

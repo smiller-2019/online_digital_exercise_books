@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS digital_exercise_book_db;
-CREATE DATABASE digital_exercise_book_db;
+DROP DATABASE IF EXISTS digital_exercisebook_db;
+CREATE DATABASE digital_exercisebook_db;
