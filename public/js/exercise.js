@@ -64,19 +64,27 @@ function saveexercise(){
     exercise1.topic = $('#topic').val();
     exercise1.subject = $('#subject').val();
     console.log(exercise1);
-    const response = $.ajax({
-        url: '/api/exercises/'+exercise1.id, 
-        method: 'PUT',
-        data: exercise1
-    }).done(
-        function(data){
-            alert("Save sucessfully");
-        }
-    ).fail(function(data) {
-        console.error(data.responseJSON.message);
-        $('#invalid').html(data.responseJSON.message);
-        $('#invalid').show();
-    });
+    if(exercise1.id>0){ //update
+        const response = $.ajax({
+            url: '/api/exercises/'+exercise1.id, 
+            method: 'PUT',
+            data: exercise1
+        }).done(
+            function(data){
+                alert("The exercise is save sucessfully");
+            }
+        );
+    }else{ // create
+        const response = $.post(
+            '/api/exercises/', 
+            exercise1,
+            function(data){
+                exercise1.id = data;
+                console.log("The exercise "+exercise1.id+" is save sucessfully");
+                alert("The exercise is save sucessfully");
+            }
+        );
+    }
 }
 
 //controllers
@@ -126,7 +134,16 @@ function saveTeacherFeedback(){
     exercise1.teacherFeedback = $('#teacher-feedback-textarea').val();
     exercise1.teacherGrade = $('#teacher-grade').val();
     $('#teacher-feedback-displaytext').html(exercise1.teacherFeedback);    
-    alert('The teacher feedback is saved successfully');
+
+    const response = $.ajax({
+        url: '/api/exercises/teacherUpdate/'+exercise1.id, 
+        method: 'PUT',
+        data: exercise1
+    }).done(
+        function(data){
+            alert('The teacher feedback is saved successfully');
+        }
+    );
 }
 
 function cancelTeacherFeedback(){
@@ -227,6 +244,10 @@ function changeMode(mode){
         $('#teacher-feedback-textarea').show();
         $('#teacher-grade').prop('disabled', false);
         $('.teacher-button').show();
+        $('#topic').prop('disabled', true);
+        $('#subject').prop('disabled', true);
+        $('#student-toolbar').hide();
+        
     }
 }
 

@@ -23,18 +23,40 @@ router.get('/:id', withAuth, async (req, res) => {
 
 // post new exercise
 router.post('/', withAuth, async (req, res) => {
-  try {
-    // create newExercise using req.body. auto-populate student_email field
-    const newExercise = await ExerciseBook.create({
-      ...req.body,
+  //Calls the update method 
+  const newExercise = await ExerciseBook.create(
+    {
       student_email: req.session.user_email,
-    });
+      topic: req.body.topic,
+      subject_id: req.body.subject
+    }
+  );
 
-    res.status(200).json(newExercise);
-  } catch (err) {
-    res.status(400).json(err);
-  }
+  //create pages
+  const exerciseId = newExercise.id;
+  for(var i=0; i<req.body.noteblocks.length; i++){
+    var noteblock = req.body.noteblocks[i];
+    switch(noteblock.type){
+      case 'text':
+        await Page.create({
+          "exercisebook_id": exerciseId,
+          "content": noteblock.content,
+          "content_type": "t"
+        });
+        break;
+      case 'image':
+        await Page.create({
+          "exercisebook_id": exerciseId,
+          "content": noteblock.image,
+          "content_type": "i"
+        });
+        break;
+    }
+  }  
+  console.log("Create exercise: "+newExercise.id);
+  res.status(200).json(newExercise.id);
 });
+
 
 // this route is called by main.js on click
 router.delete('/:id', withAuth, async (req, res) => {
@@ -59,7 +81,6 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 // Update an exercsie route
 router.put('/:id', (req, res) => {
-    console.log(req.body.noteblocks);
     //Calls the update method 
     ExerciseBook.update(
       {
@@ -113,5 +134,28 @@ router.put('/:id', (req, res) => {
     });
   });
 
+// Update an exercsie route
+router.put('/teacherUpdate/:id', (req, res) => {
+  //Calls the update method 
+  ExerciseBook.update(
+    {
+      feedback: req.body.teacherFeedback,
+      grade: req.body.teacherGrade
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+  .then(async(updatedExercise) => {
+    console.log("Update teacher feedback: "+req.params.id);
+    res.status(200).json(updatedExercise);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(400).json(err);
+  });
+});
 
 module.exports = router;

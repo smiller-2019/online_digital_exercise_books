@@ -77,7 +77,27 @@ router.get('/teacherdashboard', withAuth, async (req, res) => {
   }
 });
 
-// if hit, get all blog records (in an array)
+router.get('/newExercise', withAuth, async (req, res) => {
+  const userData = await User.findByPk(req.session.user_id, {        
+    attributes: { exclude: ['password'] }
+  });
+  const user = userData.get({ plain: true });
+
+  var subjects = [];
+  const subjectData = await Subject.findAll();
+  subjectData.forEach(data => {
+    subjects.push(data.get({plain: true}));
+  });
+
+  res.render('exercise', {
+    user: user,
+    exerciseId: 0,
+    logged_in: req.session.logged_in,
+    isStudent: (user.role=='student'),
+    subjects: subjects
+  });
+});
+
 router.get('/exercise/:id', withAuth, async (req, res) => {
   const userData = await User.findByPk(req.session.user_id, {        
     attributes: { exclude: ['password'] }
@@ -98,32 +118,6 @@ router.get('/exercise/:id', withAuth, async (req, res) => {
     subjects: subjects
   });
 });
-
-// update a blog route
-router.put('/blog/:id', (req, res) => {
-  //Calls the update method 
-  Blog.update(
-    {
-      // All the fields you can update and the data attached to the request body.
-      title: req.body.title,
-      content: req.body.content    
-    },
-    {
-      // Gets a blog based on the blog_id given in the request parameter
-      where: {
-        id: req.params.id,
-      },
-    }
-  )
-    .then((updatedBlog) => {
-      res.json(updatedBlog);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json(err);
-    });
-});
-
 
 // Get the associated blog records as per logged_in user_id
 router.get('/dashboard', withAuth, async (req, res) => {

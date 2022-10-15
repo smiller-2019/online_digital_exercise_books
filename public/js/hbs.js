@@ -1,5 +1,3 @@
-
-
 //mock functions to call server later
 async function loginToServer(email, password){
     console.log('loginToServer:'+email+' '+password);
@@ -31,7 +29,9 @@ function logout(){
     );
 }
 
-
+function createNewExercise(){
+    location.href = "/newExercise";
+}
 
 async function checkRole(){
     //get fetch to checkback the role and decide go to which dashboard
@@ -41,16 +41,6 @@ async function checkRole(){
     if (email && password) {
         loginToServer(email, password);
     }
-
-}
-
-async function viewExercise(exerciseid){
-
-    console.log(exerciseid);
-    //get fetch to load exercise data
-
-
-    
 }
 
 function changePage(pageName){
@@ -80,11 +70,14 @@ function changePage(pageName){
 function loadExercise(id, userRole){
     //fetch to get data in json object get UserRole
     console.log("load exercise:"+ id + " " + userRole);
-    const response = $.get(
-        '/api/exercises/'+id,
-        function(data){
-            initExercise(data, userRole);
-        }
-    );
+    if(id>0){
+        const response = $.get(
+            '/api/exercises/'+id,
+            function(data){
+                initExercise(data, userRole);
+            }
+        );
+    }else if(userRole=='student'){
+        newExercise();
+    }
 }
-
