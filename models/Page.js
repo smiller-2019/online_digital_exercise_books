@@ -13,7 +13,7 @@ Page.init(
     },
 
     content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     content_type: {
       type: DataTypes.STRING,
