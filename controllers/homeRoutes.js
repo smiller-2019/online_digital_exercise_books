@@ -30,21 +30,54 @@ router.get('/', (req, res) => {
 
 // get exercises as per logged_in user_id
 router.get('/studentdashboard', withAuth, async (req, res) => {
+    try {
+      // Find the logged in user based on the session ID
+      // include the associated blog records as per user
+      const userData = await User.findByPk(req.session.user_id, {        
+        attributes: { exclude: ['password'] },
+        include: [{ model: ExerciseBook }],
+      });
+      const user = userData.get({ plain: true });  
+      console.log(user);
+  
+      // pass user details and session flag into studentdashboard view  
+      res.render('studentdashboard', {
+        user: user,
+        logged_in: true,
+        ExerciseBook: userData.ExerciseBook
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+  });
+
+// get exercises as per logged_in user_id
+router.get('/teacherdashboard', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     // include the associated blog records as per user
-    const userData = await User.findByPk(req.session.user_id, {        
-      attributes: { exclude: ['password'] },
-      include: [{ model: ExerciseBook }],
+    const teacherData = await User.findByPk(req.session.user_id, {        
+      attributes: { exclude: ['password'] }});
+    const user = teacherData.get({ plain: true });
+    const classData = await Class1.findAll({
+      where: { teacher_email: user.email }
     });
-    const user = userData.get({ plain: true });  
-    console.log(user);
+    var exerciseBooks = [];
+    for(var i=0; i<classData.length; i++){
+      var semail = classData[i].getDataValue('student_email');
+      var ebData = await ExerciseBook.findAll({ where: {student_email: semail}});
+      ebData.forEach(eb => {
+        exerciseBooks.push(eb.get({plain: true}));
+      });
+    };
+    console.log(exerciseBooks);
 
     // pass user details and session flag into studentdashboard view  
-    res.render('studentdashboard', {
+    res.render('teacherdashboard', {
       user: user,
       logged_in: true,
-      ExerciseBook: userData.ExerciseBook
+      ExerciseBooks: exerciseBooks
     });
   } catch (err) {
     console.error(err);
@@ -52,38 +85,8 @@ router.get('/studentdashboard', withAuth, async (req, res) => {
   }
 });
 
-// get exercises as per logged_in user_id
-router.get('/teacherdashboard', withAuth, async (req, res) => {
-try {
-  // Find the logged in user based on the session ID
-  // include the associated blog records as per user
-  const teacherData = await User.findByPk(req.session.user_id, {        
-    attributes: { exclude: ['password'] }});
-  const user = teacherData.get({ plain: true });
-  const classData = await Class1.findAll({
-    where: { teacher_email: user.email }
-  });
-  var exerciseBooks = [];
-  for(var i=0; i<classData.length; i++){
-    var semail = classData[i].getDataValue('student_email');
-    var ebData = await ExerciseBook.findAll({ where: {student_email: semail}});
-    ebData.forEach(eb => {
-      exerciseBooks.push(eb.get({plain: true}));
-    });
-  };
-  console.log(exerciseBooks);
 
-  // pass user details and session flag into studentdashboard view  
-  res.render('teacherdashboard', {
-    user: user,
-    logged_in: true,
-    ExerciseBooks: exerciseBooks
-  });
-} catch (err) {
-  console.error(err);
-  res.status(500).json(err);
-}
-});
+
 
 router.get('/newExercise', withAuth, async (req, res) => {
 const userData = await User.findByPk(req.session.user_id, {        
@@ -125,6 +128,7 @@ res.render('exercise', {
   isStudent: (user.role=='student'),
   subjects: subjects
 });
+
 });
 
 // Get the associated blog records as per logged_in user_id

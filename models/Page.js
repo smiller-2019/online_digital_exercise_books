@@ -13,7 +13,9 @@ Page.init(
     },
 
     content: {
+
       type: DataTypes.TEXT('long'),
+
     },
     content_type: {
       type: DataTypes.STRING,

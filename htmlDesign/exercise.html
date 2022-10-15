@@ -16,11 +16,27 @@
         <div class="container">
             <div class="exercise-book"><form>
                 <div class="row">
-                    <div class="col">
+                    <div class="col col-8"><h2>StudentName :{{item.studentname}} </h2></div>
+                    <div class="col col-4"><h2>ExerciseId:{{item.studentname}}</h2></div>                
+                </div>
+                <div class="row">
+                    <div class="col col-8">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control topic" id="topic" placeholder="Input topic">
                             <label for="topic">Topic</label>
                           </div>
+                    </div>
+                    <div class="col col-4">
+                        <select class="form-select" aria-label="Default select example" id="subject">
+                            <option selected>Subject</option>
+                            <option value="Maths">Maths</option>
+                            <option value="English">English</option>
+                            <option value="Science">Science</option>
+                            <option value="Design and Technology">Design and Technology</option>
+                            <option value="History">History</option>
+                            <option value="Food Technology">Food Technology</option>
+                            <option value="Business Studies">Business Studies</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
