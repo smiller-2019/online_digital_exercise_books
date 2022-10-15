@@ -1,15 +1,29 @@
+<script src="/js/exercise.js"></script>
 <div class="col exercise-book"><form>
     <div class="row">
-        <div class="col">
+        <div class="col col-8"><h2>Student Name: {{user.first_name}} {{user.last_name}}</h2></div>
+        <div class="col col-4"><h2>Exercise ID: {{exerciseId}}</h2></div>                
+    </div>
+    <div class="row">
+        <div class="col col-8">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control topic" id="topic" placeholder="Input topic">
                 <label for="topic">Topic</label>
-            </div>
+                </div>
+        </div>
+        <div class="col col-4">
+            <select class="form-select" aria-label="Default select example" id="subject">
+                <option selected>Subject</option>
+                {{#each subjects as |item| }}
+                    <option value="{{item.id}}">{{item.title}}</option>
+                {{/each}}
+            </select>
         </div>
     </div>
+
     <div class="row">
         <div class="col-8 student-section" id="student-section">
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group" aria-label="Basic example" id="student-toolbar">
                 <button type="button" class="btn btn-primary" onclick="addNoteblockTextarea()">Add Text</button>
                 <button type="button" class="btn btn-primary" onclick="addNoteblockImage()">Add Image</button>
                 <button type="button" class="btn btn-primary" disabled>Add Drawing</button>
@@ -32,15 +46,25 @@
             <button type="button" class="teacher-button teacher-button-cancel" onclick="cancelTeacherFeedback()"></button>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <button id="studentModeBtn" type="button" class="btn btn-link" onclick="changeMode('student')">Change to 'Student' mode</button>
-            <button id="teacherModeBtn" type="button" class="btn btn-link" onclick="changeMode('teacher')">Change to 'Teacher' mode</button>
-            <button id="exportExerciseBtn" type="button" class="btn btn-info" onclick="exportExercise()">Export Exercise</button>
-        </div>
-    </div>
+    {{#if isStudent}}
+     <button type="button" class="btn btn-primary" onclick="saveexercise()">Save Exercise</button>
+     {{/if}}
 </form></div>
+
+<!--form to upload image file and convert to OCR -->
+<form method="POST" action="http://localhost:3001/profile-upload-single" enctype="multipart/form-data">
+        <div>
+                <label>Upload Image File to OCR Conversion</label>
+                <input type="file" name="profile-file" required/>
+        </div>
+        <div>
+                <input type="submit" value="Upload an Image" />
+        </div>
+</form>
+
 </div>
 <script>
-    loadExercise({{exercise.id}}, {{userRole}});
+    $(function(){
+        loadExercise({{exerciseId}}, '{{user.role}}');
+    });
 </script>

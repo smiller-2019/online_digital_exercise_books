@@ -49,7 +49,7 @@ function loginToServer(userId, password){
     */
     if(userId === 'T001')
         return {userRole: 'teacher'};
-    else if(userid === 'S001') 
+    else if(userId === 'S001') 
         return {userRole: 'student'};
     else
         $('#invalid').show();
@@ -303,6 +303,10 @@ function changePage(pageName){
             initExercise();
             break;
     }
+}
+
+function loadExercise(id, userRole){
+    //fetch to get data in json object get UserRole
 }
 
 $(function(){

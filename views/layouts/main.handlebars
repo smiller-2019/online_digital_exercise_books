@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/exercise.css"/>
+    
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/hbs.js"></script>
+
+    <title>Digtal Exercise Book</title>
+  </head>
+
+  <body>
+    <header class = "row d-flex justify-content-between bg-primary">
+       <div class="col col-6"><h1>ABC Primary School</h1>
+        {{#if logged_in}}
+        <p>Welcome, {{user.first_name}} {{user.last_name}}!</p>
+        {{/if}}
+       </div>
+    
+       <img class="col col-2 col-md-1" src="/image/abc_logo_gold.png" alt="ABC school Logo" >
+      {{#if logged_in}}
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="javascript: logout()">Logout</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Dashboards</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        {{/if}}
+
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+  </body>
+</html>

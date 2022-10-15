@@ -1,44 +1,48 @@
-const sequelize = require("../config/connection");
-const { User, Subject, Exercisebook, Page, Class } = require("../models");
+const sequelize = require('../config/connection');
 
-const userData = require("./userData.json");
-const subjectData = require("./subjectData.json");
-const classData = require("./classData.json");
-const exercisebookData = require("./exercisebookData.json");
-const pageData = require("./pageData.json");
+const User = require('../models/User');
+const userData = require('./user-seeds.json');
+
+const Subject = require('../models/Subject');
+const subjectData = require('./subject-seeds.json');
+
+const Class = require('../models/Class');
+const classData = require('./class-seeds.json');
+
+const ExerciseBook = require('../models/ExerciseBook');
+const exerciseBookData = require('./exercise-book-seeds.json');
+
+const Page = require('../models/Page');
+const pageData = require('./page-seeds.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  const users = await User.bulkCreate(userData, {
+  await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
   });
 
-  for (const subject of subjectData) {
-    await Subject.create({
-      ...subject,
-    });
-  }
+  await Subject.bulkCreate(subjectData, {
+    individualHooks: true,
+    returning: true,
+  });
 
-  for (const exercisebook of exercisebookData) {
-    await Exercisebook.create({
-      ...exercisebook,
-    });
-  }
+  await Class.bulkCreate(classData, {
+    individualHooks: true,
+    returning: true,
+  });
 
-  for (const page of pageData) {
-    await Page.create({
-      ...page,
-    });
-  }
+  await ExerciseBook.bulkCreate(exerciseBookData, {
+    individualHooks: true,
+    returning: true,
+  });
 
-  for (const classes of classData) {
-    await Class.create({
-      ...classes,
-    });
-  }
-
+  await Page.bulkCreate(pageData, {
+    individualHooks: true,
+    returning: true,
+  });
+  
   process.exit(0);
 };
 
