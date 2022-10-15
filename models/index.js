@@ -10,7 +10,7 @@ User.hasMany(ExerciseBook, {
 });
 
 ExerciseBook.belongsTo(User, {
-  foreignKey: "student_email",
+  foreignKey: "student_email"
 });
 
 ExerciseBook.hasMany(Page, {

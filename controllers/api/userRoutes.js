@@ -22,9 +22,10 @@ router.post('/', async (req, res) => {
 // user login route: /api/users/login
 router.post('/login', async (req, res) => {
   try {
+    console.log('login: '+ req.body.email + ' '+ req.body.password);
     // where email from DB = email from payload
     const userData = await User.findOne({ where: { email: req.body.email } });
-
+    console.log(userData);
     if (!userData) {
       res
         .status(400)
@@ -42,7 +43,7 @@ router.post('/login', async (req, res) => {
     }
     // set user_id of the current session = id of the logged in user
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user_id = userData.email;
       req.session.user_email = userData.email;
       req.session.user_role = userData.role;
 

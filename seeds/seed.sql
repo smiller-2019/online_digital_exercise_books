@@ -1,13 +1,18 @@
 use digital_exercise_book_db;
 
 -- init the tables data
+/*
 INSERT INTO user
     (email,password,first_name,last_name,role)
 VALUES
     ('karen@myteacher.com','password1','karen','lacey','teacher'),
+    ('stacey@astudent.com','password1234','stacey','lacey','student');
+*/
+INSERT INTO user
+    (email,password,first_name,last_name,role)
+VALUES
     ('dave@myteacher.com','password12','dave','banner','teacher'),
     ('sally@myteacher.com','password123','sally','payne','teacher'),
-    ('stacey@astudent.com','password1234','stacey','lacey','student'),
     ('timothy@anostudent.com','password12345','timothy','banks','student'),
     ('kelly@anostudent.com','password123456','kelly','jones','student'),
     ('brian@thisstudent.com','password1234567','brian','delany','student');

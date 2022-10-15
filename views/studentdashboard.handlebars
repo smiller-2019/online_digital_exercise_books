@@ -8,16 +8,16 @@
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Grade</th>
-                    <th scope="col">Updated Date</th>
+                    <th scope="col">Feedback</th>
                 </tr>
                 </thead>
                 <tbody id="dashboardcontent">
-                {{#each ExerciseBook as |item| }}
+                {{#each user.exercise_books as |item i| }}
                 <tr>
-                    <td>{{i+1}}</th>
+                    <td>{{i}}</td>
                     <td><button type='button' class='btn btn-link' onclick='viewExercise({{item.id}})'>{{item.topic}}</button></td>            
                     <td>{{item.grade}}</td>
-                    <td>{{item.date}}</td>
+                    <td>{{item.feedback}}</td>
                 </tr>
                 {{/each}}
                 </tbody>
