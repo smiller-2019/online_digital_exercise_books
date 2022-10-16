@@ -20,16 +20,29 @@ router.get('/', (req, res) => {
   // Signup route
   router.get('/signup', (req, res) => {
     // If the user is already logged in, redirect to student or teacher view
+    console.log('signup');
+    
     if (!req.session.logged_in) {
-      
-        res.redirect('/signuppage');     
+        res.render('signuppage');     
     }
   });
 
+  //ocr
+  router.get('/ocr',withAuth, (req, res) => {
+    // If the user is already logged in, redirect to student or teacher view
+    console.log('ocr');
+    
+    if (req.session.logged_in) {
+        res.render('ocr');     
+    }else{
+      res.status(400).json({message: "No access right."});
+    }
+  });
 //========================================================================================
 
 // get exercises as per logged_in user_id
 router.get('/studentdashboard', withAuth, async (req, res) => {
+    console.log('studentdashboard');
     try {
       // Find the logged in user based on the session ID
       // include the associated blog records as per user
@@ -85,73 +98,69 @@ router.get('/teacherdashboard', withAuth, async (req, res) => {
   }
 });
 
-
-
-
 router.get('/newExercise', withAuth, async (req, res) => {
-const userData = await User.findByPk(req.session.user_id, {        
-  attributes: { exclude: ['password'] }
-});
-const user = userData.get({ plain: true });
+  const userData = await User.findByPk(req.session.user_id, {        
+    attributes: { exclude: ['password'] }
+  });
+  const user = userData.get({ plain: true });
 
-var subjects = [];
-const subjectData = await Subject.findAll();
-subjectData.forEach(data => {
-  subjects.push(data.get({plain: true}));
-});
+  var subjects = [];
+  const subjectData = await Subject.findAll();
+  subjectData.forEach(data => {
+    subjects.push(data.get({plain: true}));
+  });
 
-res.render('exercise', {
-  user: user,
-  exerciseId: 0,
-  logged_in: req.session.logged_in,
-  isStudent: (user.role=='student'),
-  subjects: subjects
-});
+  res.render('exercise', {
+    user: user,
+    exerciseId: 0,
+    logged_in: req.session.logged_in,
+    isStudent: (user.role=='student'),
+    subjects: subjects
+  });
 });
 
 router.get('/exercise/:id', withAuth, async (req, res) => {
-const userData = await User.findByPk(req.session.user_id, {        
-  attributes: { exclude: ['password'] }
-});
-const user = userData.get({ plain: true });
+  const userData = await User.findByPk(req.session.user_id, {        
+    attributes: { exclude: ['password'] }
+  });
+  const user = userData.get({ plain: true });
 
-var subjects = [];
-const subjectData = await Subject.findAll();
-subjectData.forEach(data => {
-  subjects.push(data.get({plain: true}));
-});
+  var subjects = [];
+  const subjectData = await Subject.findAll();
+  subjectData.forEach(data => {
+    subjects.push(data.get({plain: true}));
+  });
 
-res.render('exercise', {
-  user: user,
-  exerciseId: req.params.id,
-  logged_in: req.session.logged_in,
-  isStudent: (user.role=='student'),
-  subjects: subjects
-});
-
+  res.render('exercise', {
+    user: user,
+    exerciseId: req.params.id,
+    logged_in: req.session.logged_in,
+    isStudent: (user.role=='student'),
+    subjects: subjects
+  });
 });
 
 // Get the associated blog records as per logged_in user_id
 router.get('/dashboard', withAuth, async (req, res) => {
-try {
-  // Find the logged in user based on the session ID
-  // include the associated blog records as per user
-  const userData = await User.findByPk(req.session.user_id, {
-    attributes: { exclude: ['password'] },
-    include: [{ model: Blog }],
-  });
+  try {
+    // Find the logged in user based on the session ID
+    // include the associated blog records as per user
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Blog }],
+    });
 
-  const user = userData.get({ plain: true });
-  console.log(user);
+    const user = userData.get({ plain: true });
+    console.log(user);
 
-  // pass user details and session flag into profile.hdbs template  
-  res.render('dashboard', {
-    ...user,
-    logged_in: true
-  });
-} catch (err) {
-  res.status(500).json(err);
-}
+    // pass user details and session flag into profile.hdbs template  
+    res.render('dashboard', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 

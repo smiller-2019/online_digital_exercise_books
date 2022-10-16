@@ -119,9 +119,7 @@ async function uploadToCloudinary(locaFilePath, localFileName) {
 
 async function buildSuccessMsg(urlList) {
   // Building success msg to display on screeny
-  let response = `<h1>
-                   <a href="/">Back to Student Dashboard</a><br>
-                  </h1><hr>`;
+  let response = '<h1>OCR Tool</h1><hr>';
   let ocrImageText = [];
 
   // Iterating over urls of images and creating basic

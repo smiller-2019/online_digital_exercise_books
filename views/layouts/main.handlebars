@@ -25,24 +25,29 @@
         {{/if}}
        </div>
     
-       <img class="col col-2 col-md-1" src="/image/abc_logo_gold.png" alt="ABC school Logo" >
+       <img class="col col-2 col-md-1" src="/image/university.png" alt="Sample school Logo" >
       {{#if logged_in}}
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="javascript: logout()">Logout</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/">Dashboards</a>
-              </li>
-            </ul>
+
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="javascript: logout()">Logout</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Dashboards</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/ocr" target="_blank">OCR Tool</a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
         {{/if}}
 
     </header>
