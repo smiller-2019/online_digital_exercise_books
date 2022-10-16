@@ -33,6 +33,58 @@ function createNewExercise(){
     location.href = "/newExercise";
 }
 
+function createAccount(){
+    console.log('createaccount');
+    location.href ="/signup";
+}
+
+function backToLogin(){
+    location.href ="/";
+}
+
+function signup(){
+    var email = $('#email').val();
+    var first_name = $('#firstName').val();
+    var last_name=$('#lasttName').val();
+    var password = $('#password').val();
+    var role=$('input[name=Role]:checked').val();
+    
+    
+    console.log("signup button pressed");
+    console.log(role);
+    console.log(email);
+    
+    
+    if (password.length<8){
+        $('#invalidPassword').show();
+        return;
+    }
+
+
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!email.match(validRegex)){
+        $('#invalidemail').show();
+        return;
+    }
+    const response = $.post(
+        '/api/users/',   {
+            email: email, 
+            password: password,
+            first_name:first_name,
+            last_name: last_name,
+            role:role
+        },
+        function(data){
+            console.log('updated database successfully');
+            location.href = "/";
+        }).fail(function(data){
+            console.error(data.responseJSON.message);
+            alert(data.responseJSON.message);
+        });
+
+
+}
+
 async function checkRole(){
     //get fetch to checkback the role and decide go to which dashboard
     //get the userid and password from intput field
@@ -40,30 +92,6 @@ async function checkRole(){
     var password = $('#password').val();
     if (email && password) {
         loginToServer(email, password);
-    }
-}
-
-function changePage(pageName){
-    console.debug('changePage: ' + pageName);
-    pageData.page = pageName;
-    $('#container').html('');
-    switch(pageName){
-        case "login":
-           // $('#container').append(generateLoginPartial());
-            break;
-        case "signup":
-            //$('#container').append(generateSignupPartial());
-            break;    
-        case "studentDashboard":
-            //$('#container').append(generateStudentDashboardPartial());            
-            break;           
-        case "teacherDashboard":
-            ///$('#container').append(generateTeacherDashboardPartial());            
-            break;
-        case "exercise":
-            //$('#container').append(generateExercisePartial());
-            initExercise();
-            break;
     }
 }
 
