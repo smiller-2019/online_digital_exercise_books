@@ -1,9 +1,12 @@
-const path = require('path');
-const express = require('express');
-const session = require('express-session');
-const exphbs = require('express-handlebars');
-const routes = require('./controllers');
-const helpers = require('./utils/helpers');
+// acknowledgment of code adapted from https://www.twilio.com/blog/2016/11/a-simple-way-to-ocr-images-from-a-url-with-tesseract-js.html and
+// https://www.geeksforgeeks.org/how-to-upload-single-multiple-image-to-cloudinary-using-node-js/  and
+//https://www.youtube.com/watch?v=QhJiOCwz-_I
+const path = require("path");
+const express = require("express");
+const session = require("express-session");
+const exphbs = require("express-handlebars");
+const routes = require("./controllers");
+const helpers = require("./utils/helpers");
 
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
@@ -11,10 +14,9 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 const T = require("tesseract.js");
 
-
-const sequelize = require('./config/connection');
+const sequelize = require("./config/connection");
 // to enable cookie
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,32 +25,31 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-  secret: 'Super secret secret',
+  secret: "Super secret secret",
   cookie: {
     maxAge: 300000,
     httpOnly: true,
     secure: false,
-    sameSite: 'strict',
+    sameSite: "strict",
   },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));
 
 // Inform Express.js on which template engine to use
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
-
 
 //tesseract api config
 if (!fs.existsSync("./uploads")) {
@@ -119,7 +120,7 @@ async function uploadToCloudinary(locaFilePath, localFileName) {
 
 async function buildSuccessMsg(urlList) {
   // Building success msg to display on screeny
-  let response = '<h1>OCR Tool</h1><hr>';
+  let response = "<h1>OCR Tool</h1><hr>";
   let ocrImageText = [];
 
   // Iterating over urls of images and creating basic
@@ -134,14 +135,10 @@ async function buildSuccessMsg(urlList) {
     response += "File uploaded successfully.<br><br>";
     response += `FILE URL: <a href="${urlList[i]}">
                     ${urlList[i]}</a>.<br><br>`;
-    response += `<img src="${urlList[i]}" /><br><hr>`;
+    response += `<img src="${urlList[i]}" /><p>${ocrImageText}</p><br><hr>`;
     response += `<p>${ocrImageText}</p><br><br>`;
   }
 
-  response += `<br>
-<p>Now you can store this url in database or 
-  // do anything with it  based on use case.</p>
-`;
   return response;
 }
 
@@ -176,5 +173,5 @@ app.post(
 );
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log("Now listening"));
 });

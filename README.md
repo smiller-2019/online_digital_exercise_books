@@ -43,6 +43,11 @@ Run npm init and then install the required packages by running npm i <package na
 Run npm start or node server.js to start the application at the backend or run the deployed heroku application.
 
 ![image](https://user-images.githubusercontent.com/105307687/196041277-448bce28-5a2f-4f92-b9b2-0eca43527715.png)
+![image](./public/image/Login_page.png)
+![image](./public/image/signuppage.png)
+![image](./public/image/student_dashboard.png)
+![image](./public/image/teacherDashboard.png)
+![image](./public/image/exercisepage.png)
 
 ## License
 
@@ -78,6 +83,7 @@ To test on Heroku follow the installation documentation for Heroku.:
 [Heroku documentation on getting started with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs?singlepage=true)
 
 [Heroku documentation on creating a Heroku remote](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote)
+[Guide to Deploy with Heroku and MySQL](https://coding-boot-camp.github.io/full-stack/heroku/deploy-with-heroku-and-mysql)
 
 ## Questions
 
@@ -85,7 +91,8 @@ If there are any questions then you can contact me via:
 
 Email: sue@myapp.com
 
-GitHub Profile: [smiller-2019](https://github.com/smiller-2019/)
+GitHub Profile: [smiller-2019](https://github.com/smiller-2019/online_digital_exercise_books)
 
-GitHub Repository: [smiller-2019](https://github.com/smiller-2019/)
+GitHub Repository: [smiller-2019](https://immense-mountain-30351.herokuapp.com/)
 
+Presentation: [smiller-2019](https://docs.google.com/presentation/d/1oH05sGEV8nit5LeJtvoHyVMVEVyV6Qv518P2rgfZsNg/edit#slide=id.g169de6ee2a5_0_367)

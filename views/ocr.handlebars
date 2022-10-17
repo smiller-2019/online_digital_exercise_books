@@ -1,10 +1,15 @@
+<!--acknowledgment of code adapted from https://www.twilio.com/blog/2016/11/a-simple-way-to-ocr-images-from-a-url-with-tesseract-js.html -->
 <!--form to upload image file and convert to OCR -->
-<form method="POST" action="/profile-upload-single" enctype="multipart/form-data">
-        <div>
-                <label>Upload Image File to OCR Conversion</label>
-                <input type="file" name="profile-file" required/>
-        </div>
-        <div>
-                <input type="submit" value="Upload an Image" />
-        </div>
+<form
+  method="POST"
+  action="/profile-upload-single"
+  enctype="multipart/form-data"
+>
+  <div>
+    <label>Upload Image File to OCR Conversion</label>
+    <input type="file" name="profile-file" required />
+  </div>
+  <div>
+    <input type="submit" value="Upload an Image" />
+  </div>
 </form>
