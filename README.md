@@ -43,6 +43,10 @@ Run npm init and then install the required packages by running npm i <package na
 Run npm start or node server.js to start the application at the backend or run the deployed heroku application.
 
 ![image](https://user-images.githubusercontent.com/105307687/196041277-448bce28-5a2f-4f92-b9b2-0eca43527715.png)
+![image](./public/image/Login-page.png)
+![image](./public/image/teacherDashboard.png)
+![image](./public/image/student-dashboard.png)
+![image](./public/image/exercisepage.png)
 
 ## License
 
@@ -88,4 +92,3 @@ Email: sue@myapp.com
 GitHub Profile: [smiller-2019](https://github.com/smiller-2019/)
 
 GitHub Repository: [smiller-2019](https://github.com/smiller-2019/)
-
