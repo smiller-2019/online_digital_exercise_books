@@ -102,15 +102,3 @@ dist
 
 # TernJS port file
 .tern-port
-
-#dont upload
-app.js
-index.js
-package-lock.json
-package.json
-.env
-public
-images
-config
-uploads
-eng.traineddata
