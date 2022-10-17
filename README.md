@@ -91,6 +91,8 @@ If there are any questions then you can contact me via:
 
 Email: sue@myapp.com
 
+Portfolio: [portfolio](https://smiller-2019.github.io/module-02-challenge/)
+
 GitHub Repository: [smiller-2019](https://github.com/smiller-2019/online_digital_exercise_books)
 
 Deployment: [Deployed application on Heroku](https://online-digital-exercise-books.herokuapp.com/)
