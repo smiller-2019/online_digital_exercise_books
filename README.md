@@ -43,11 +43,11 @@ Run npm init and then install the required packages by running npm i <package na
 Run npm start or node server.js to start the application at the backend or run the deployed heroku application.
 
 ![image](https://user-images.githubusercontent.com/105307687/196041277-448bce28-5a2f-4f92-b9b2-0eca43527715.png)
-![image](/images/Login_page.png)
-![image](/images/signuppage.png)
-![image](/images/student_dashboard.png)
-![image](/images/teacherDashboard.png)
-![image](/images/exercisepage.png)
+![image](https://github.com/smiller-2019/weather-outlook/blob/main/public/image/Login_page.png)
+![image](https://github.com/smiller-2019/weather-outlook/blob/main/public/image/signuppage.png)
+![image](https://github.com/smiller-2019/weather-outlook/blob/main/public/image/student_dashboard.png)
+![image](https://github.com/smiller-2019/weather-outlook/blob/main/public/image/teacherDashboard.png)
+![image](https://github.com/smiller-2019/weather-outlook/blob/main/public/image/exercisepage.png)
 
 ## License
 
