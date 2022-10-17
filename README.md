@@ -93,6 +93,6 @@ Email: sue@myapp.com
 
 GitHub Profile: [smiller-2019](https://github.com/smiller-2019/online_digital_exercise_books)
 
-GitHub Repository: [smiller-2019](https://immense-mountain-30351.herokuapp.com/)
+GitHub Repository: [smiller-2019](https://online-digital-exercise-books.herokuapp.com/)
 
 Presentation: [smiller-2019](https://docs.google.com/presentation/d/1oH05sGEV8nit5LeJtvoHyVMVEVyV6Qv518P2rgfZsNg/edit#slide=id.g169de6ee2a5_0_367)
