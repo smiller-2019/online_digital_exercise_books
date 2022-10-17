@@ -135,7 +135,7 @@ async function buildSuccessMsg(urlList) {
     response += "File uploaded successfully.<br><br>";
     response += `FILE URL: <a href="${urlList[i]}">
                     ${urlList[i]}</a>.<br><br>`;
-    response += `<img src="${urlList[i]}" /><p>${ocrImageText}</p><br><hr>`;
+    response += `<img src="${urlList[i]}" /><br><hr>`;
     response += `<p>${ocrImageText}</p><br><br>`;
   }
 
