@@ -43,11 +43,11 @@ Run npm init and then install the required packages by running npm i <package na
 Run npm start or node server.js to start the application at the backend or run the deployed heroku application.
 
 ![image](https://user-images.githubusercontent.com/105307687/196041277-448bce28-5a2f-4f92-b9b2-0eca43527715.png)
-![image](/public/image/Login_page.png)
-![image](/public/image/signuppage.png)
-![image](/public/image/student_dashboard.png)
-![image](/public/image/teacherDashboard.png)
-![image](/public/image/exercisepage.png)
+![image](/images/Login_page.png)
+![image](/images/signuppage.png)
+![image](/images/student_dashboard.png)
+![image](/images/teacherDashboard.png)
+![image](/images/exercisepage.png)
 
 ## License
 
@@ -93,6 +93,6 @@ Email: sue@myapp.com
 
 GitHub Repository: [smiller-2019](https://github.com/smiller-2019/online_digital_exercise_books)
 
-Deployment: [smiller-2019](https://online-digital-exercise-books.herokuapp.com/)
+Deployment: [Deployed application on Heroku](https://online-digital-exercise-books.herokuapp.com/)
 
-Presentation: [smiller-2019](https://docs.google.com/presentation/d/1oH05sGEV8nit5LeJtvoHyVMVEVyV6Qv518P2rgfZsNg/edit#slide=id.g169de6ee2a5_0_367)
+Presentation: [Presentation](https://docs.google.com/presentation/d/1oH05sGEV8nit5LeJtvoHyVMVEVyV6Qv518P2rgfZsNg/edit#slide=id.g169de6ee2a5_0_367)
